@@ -1,5 +1,7 @@
 using System.Linq;
+using TMPro;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,9 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GridLayoutGroup grid;
     [SerializeField] private GameObject gridBoxPrefab;
 
+    [Header("Debug")]
+    [SerializeField] private bool showBoxesCoordinates = false;
+
     [ContextMenu("Generate grid")]
     private void GenerateGrid()
     {
@@ -20,9 +25,28 @@ public class GridManager : MonoBehaviour
 
         Transform gridTransform = grid.transform;
 
-        for (int i = 0; i < gridWidth * gridHeight; i++)
+        for (int y = 0; y < gridHeight; y++)
         {
-            GameObject.Instantiate(gridBoxPrefab, gridTransform);
+            for (int x = 0; x < gridWidth; x++)
+            {
+                GameObject boxInstance = PrefabUtility.InstantiatePrefab(gridBoxPrefab, gridTransform) as GameObject;
+                GridBox box = boxInstance.GetComponent<GridBox>();
+
+                Vector2Int coordinates = new Vector2Int(x, y);
+                box.boxCoordinates = coordinates;
+                box.name += $" ({coordinates.x};{coordinates.y})";
+
+#if UNITY_EDITOR
+                if (showBoxesCoordinates)
+                {
+                    box.GetComponentInChildren<TextMeshProUGUI>().text = $"{coordinates.x};{coordinates.y}";
+                }
+                else
+                {
+                    box.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                }
+#endif
+            }
         }
 
         AdaptGridLayoutProperties();

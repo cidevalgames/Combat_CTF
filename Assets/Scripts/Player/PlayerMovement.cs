@@ -53,5 +53,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = box.transform.position;
 
         playerPosition = newPos;
+
+        GameManager.Instance.NextPlayerTurn();
     }
 }

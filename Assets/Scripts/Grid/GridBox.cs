@@ -9,8 +9,6 @@ public class GridBox : MonoBehaviour
 
     private bool _initialized = false;
 
-    private PlayerMovement _playerMovement;
-
     private void Awake()
     {
         Init();
@@ -26,10 +24,8 @@ public class GridBox : MonoBehaviour
 
     private void OnClick()
     {
-        if (!_playerMovement)
-            _playerMovement = GameManager.Instance.currentlyPlayingPlayer.GetComponent<PlayerMovement>();
+        PlayerMovement playerMovement = GameManager.Instance.currentlyPlayingPlayer.GetComponent<PlayerMovement>();
 
-        _playerMovement.MovePlayer(boxCoordinates);
-        _playerMovement.DisableMovement();
+        playerMovement.MovePlayer(boxCoordinates);
     }
 }

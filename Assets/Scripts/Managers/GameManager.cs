@@ -58,8 +58,31 @@ public class GameManager : MonoBehaviour
         _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
         _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(gridSize.x - 1, gridSize.y - 1));
 
-        // Enable movement for player 1
-        currentlyPlayingPlayer.GetComponent<PlayerMovement>().EnableMovement();
+        EnablePlayer(_attacker);
+    }
+
+    public void NextPlayerTurn()
+    {
+        DisablePlayer(currentlyPlayingPlayer);
+
+        if (currentlyPlayingPlayer == _attacker)
+            currentlyPlayingPlayer = _defender;
+        else if (currentlyPlayingPlayer == _defender)
+            currentlyPlayingPlayer = _attacker;
+
+        EnablePlayer(currentlyPlayingPlayer);
+    }
+
+    private void EnablePlayer(GameObject player)
+    {
+        // Enable movement
+        player.GetComponent<PlayerMovement>().EnableMovement();
+    }
+
+    private void DisablePlayer(GameObject player)
+    {
+        // Disable movement
+        player.GetComponent<PlayerMovement>().DisableMovement();
     }
 
     /// <summary>

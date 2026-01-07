@@ -58,11 +58,14 @@ public class GridManager : MonoBehaviour
 
     public void EnableBoxInteraction(Vector2Int boxCoordinates)
     {
+        Debug.Log("Enable box interaction");
+
         // Check if the box exists
-        Rect validArea = new Rect(0, 0, gridWidth - 1, gridHeight - 1);
+        Rect validArea = new Rect(0, 0, gridWidth, gridHeight);
 
         if (!validArea.Contains(boxCoordinates))
         {
+            Debug.Log("Not in valid area: " + boxCoordinates);
             return;
         }
 

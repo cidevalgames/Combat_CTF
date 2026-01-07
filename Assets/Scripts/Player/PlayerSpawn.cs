@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
@@ -6,6 +7,8 @@ public class PlayerSpawn : MonoBehaviour
     {
         GridBox box = GridManager.Instance.boxes[spawnPosition.x, spawnPosition.y];
         transform.position = box.transform.position;
+
+        GetComponent<PlayerMovement>().SetPlayerPosition(spawnPosition);
 
         //Debug.Log($"Spawn player at position {spawnPosition}");
     }

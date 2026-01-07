@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEditor;
@@ -18,6 +20,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private bool showBoxesCoordinates = false;
 
     public GridBox[,] boxes { get; private set; }
+    public List<GridBox> interactableBoxes { get; private set; } = new List<GridBox>();
 
     public static GridManager Instance { get; private set; }
 
@@ -40,6 +43,43 @@ public class GridManager : MonoBehaviour
         {
             boxes[b.boxCoordinates.x, b.boxCoordinates.y] = b;
         }
+    }
+
+    public GridBox GetBox(Vector2Int boxCoordinates)
+    {
+        foreach (GridBox b in boxes)
+        {
+            if (b.boxCoordinates == boxCoordinates)
+                return b;
+        }
+
+        return null;
+    }
+
+    public void EnableBoxInteraction(Vector2Int boxCoordinates)
+    {
+        // Check if the box exists
+        Rect validArea = new Rect(0, 0, gridWidth - 1, gridHeight - 1);
+
+        if (!validArea.Contains(boxCoordinates))
+        {
+            return;
+        }
+
+        GridBox box = GetBox(boxCoordinates);
+        box.GetComponent<Button>().interactable = true;
+
+        interactableBoxes.Add(box);
+    }
+
+    public void DisableBoxesInteraction()
+    {
+        foreach (GridBox b in interactableBoxes)
+        {
+            b.GetComponent<Button>().interactable = false;
+        }
+
+        interactableBoxes.Clear();
     }
 
     public Vector2Int GetGridSize()

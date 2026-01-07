@@ -35,10 +35,14 @@ public class GridBox : MonoBehaviour
 
         if (gridObstacle.GetType() == typeof(PlayerGridObstacle))
         {
-            // Attack
-            Debug.Log($"{GameManager.Instance.currentlyPlayingPlayer.name} attacks {gridObstacle.name}.");
+            if (GameManager.Instance.IsAttackerTurn())
+            {
+                // Attack target
+                GameManager.Instance.GetAttacker().GetComponent<PlayerAttack>().AttackTarget(GameManager.Instance.GetDefender());
+                Debug.Log($"{GameManager.Instance.currentlyPlayingPlayer.name} attacks {gridObstacle.name}.");
 
-            GameManager.Instance.NextPlayerTurn();
+                GameManager.Instance.NextPlayerTurn();
+            }
 
             return;
         }

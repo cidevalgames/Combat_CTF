@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector2Int newPos)
     {
+        GridBox oldBox = GridManager.Instance.boxes[playerPosition.x, playerPosition.y];
+        oldBox.gridObstacle = null;
+
         GridBox box = GridManager.Instance.boxes[newPos.x, newPos.y];
         transform.position = box.transform.position;
         box.gridObstacle = GetComponent<GridObstacle>();

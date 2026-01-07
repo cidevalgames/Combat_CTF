@@ -1,8 +1,13 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
     [SerializeField] private int maxLife = 100;
+
+    [Header("UI")]
+    [SerializeField] Slider lifeSlider;
 
     public int Life 
     { 
@@ -13,6 +18,8 @@ public class PlayerLife : MonoBehaviour
         private set
         {
             _life = Mathf.Clamp(value, 0, maxLife);
+
+            UpdateHealthBar();
 
             if (value <= 0)
                 Die();
@@ -36,5 +43,16 @@ public class PlayerLife : MonoBehaviour
         Debug.Log($"{name} died.");
 
         Destroy(gameObject);
+    }
+
+    public void HealToMax()
+    {
+        Life = maxLife;
+    }
+
+    private void UpdateHealthBar()
+    {
+        lifeSlider.value = Mathf.InverseLerp(0, maxLife, Life);
+        lifeSlider.GetComponentInChildren<TextMeshProUGUI>().text = $"{Life} / {maxLife}";
     }
 }

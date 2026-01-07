@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
         _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(4, 5));
         _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
 
+        _defender.GetComponent<PlayerLife>().HealToMax();
+
         EnablePlayer(_attacker);
     }
 
@@ -106,8 +108,18 @@ public class GameManager : MonoBehaviour
         return _attacker;
     }
 
-    public GameObject GetDefenser()
+    public GameObject GetDefender()
     {
         return _defender;
+    }
+
+    public bool IsAttackerTurn()
+    {
+        return currentlyPlayingPlayer == _attacker;
+    }
+
+    public bool IsDefenderTurn()
+    {
+        return currentlyPlayingPlayer == _defender;
     }
 }

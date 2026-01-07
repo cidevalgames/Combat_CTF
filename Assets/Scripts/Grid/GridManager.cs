@@ -66,6 +66,17 @@ public class GridManager : MonoBehaviour
             return;
 
         GridBox box = GetBox(boxCoordinates);
+
+        // Don't enable box interaction if there is an obstacle other than a defender in the box
+        if (box.gridObstacle)
+        {
+            if (box.gridObstacle.GetType() != typeof(PlayerGridObstacle))
+                return;
+
+            if (GameManager.Instance.IsDefenderTurn())
+                return;
+        }
+
         box.GetComponent<Button>().interactable = true;
 
         interactableBoxes.Add(box);

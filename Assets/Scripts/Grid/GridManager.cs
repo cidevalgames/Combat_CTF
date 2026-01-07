@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.Mathematics;
@@ -18,6 +19,16 @@ public class GridManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool showBoxesCoordinates = false;
 
+    public GridBox[,] boxes { get; private set; }
+
+    public static GridManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (!Instance)
+            Instance = this;
+    }
+
     [ContextMenu("Generate grid")]
     private void GenerateGrid()
     {
@@ -25,12 +36,16 @@ public class GridManager : MonoBehaviour
 
         Transform gridTransform = grid.transform;
 
+        boxes = new GridBox[gridWidth, gridHeight];
+
         for (int y = 0; y < gridHeight; y++)
         {
             for (int x = 0; x < gridWidth; x++)
             {
                 GameObject boxInstance = PrefabUtility.InstantiatePrefab(gridBoxPrefab, gridTransform) as GameObject;
                 GridBox box = boxInstance.GetComponent<GridBox>();
+
+                boxes[x, y] = box;
 
                 Vector2Int coordinates = new Vector2Int(x, y);
                 box.boxCoordinates = coordinates;

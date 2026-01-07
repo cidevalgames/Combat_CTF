@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
@@ -9,6 +8,8 @@ public class PlayerSpawn : MonoBehaviour
         transform.position = box.transform.position;
 
         GetComponent<PlayerMovement>().SetPlayerPosition(spawnPosition);
+
+        box.gridObstacle = GetComponent<GridObstacle>();
 
         //Debug.Log($"Spawn player at position {spawnPosition}");
     }

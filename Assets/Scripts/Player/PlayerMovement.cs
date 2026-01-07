@@ -8,16 +8,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool _canMove { get; private set; } = false;
 
-    private void Awake()
-    {
-        
-    }
-
-    public void OnDisable()
-    {
-        DisableMovement();
-    }
-
     public void EnableMovement()
     {
         for (int i = 1; i <= movementRange; i++)
@@ -51,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GridBox box = GridManager.Instance.boxes[newPos.x, newPos.y];
         transform.position = box.transform.position;
+        box.gridObstacle = GetComponent<GridObstacle>();
 
         playerPosition = newPos;
 

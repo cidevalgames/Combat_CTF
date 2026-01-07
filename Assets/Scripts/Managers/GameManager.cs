@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         // Only for debug
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
-            Debug.Log($"Current scene: {SceneManager.GetSceneAt(i).name}");
+            //Debug.Log($"Current scene: {SceneManager.GetSceneAt(i).name}");
 
             if (SceneManager.GetSceneAt(i).name == "FeaturePlayer")
                 StartCoroutine(StartGame());
@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        Debug.Log("Start game");
-
         if (_players[0] == null || _players[1] == null)
             _players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -40,6 +38,8 @@ public class GameManager : MonoBehaviour
                 _attacker = p;
             else if (p.name == "Player Defender")
                 _defender = p;
+
+            p.GetComponent<SpriteRenderer>().enabled = false;
         }
 
         currentlyPlayingPlayer = _attacker;
@@ -51,12 +51,19 @@ public class GameManager : MonoBehaviour
 
         yield return null;
 
-        Debug.Log(gridManager.boxes.Length);
+        foreach (GameObject p in _players)
+        {
+            p.GetComponent<SpriteRenderer>().enabled = true;
+        }
 
         Vector2Int gridSize = gridManager.GetGridSize();
 
-        _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
-        _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(gridSize.x - 1, gridSize.y - 1));
+        //_attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
+        //_defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(gridSize.x - 1, gridSize.y - 1));
+
+        // Test for attack
+        _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(4, 5));
+        _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
 
         EnablePlayer(_attacker);
     }

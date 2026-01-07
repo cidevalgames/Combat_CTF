@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GridBox : MonoBehaviour
 {
     public Vector2Int boxCoordinates = Vector2Int.zero;
+    public GridObstacle gridObstacle = null;
 
     private Button _button;
 
@@ -24,8 +25,22 @@ public class GridBox : MonoBehaviour
 
     private void OnClick()
     {
-        PlayerMovement playerMovement = GameManager.Instance.currentlyPlayingPlayer.GetComponent<PlayerMovement>();
+        if (!gridObstacle)
+        {
+            PlayerMovement playerMovement = GameManager.Instance.currentlyPlayingPlayer.GetComponent<PlayerMovement>();
+            playerMovement.MovePlayer(boxCoordinates);
 
-        playerMovement.MovePlayer(boxCoordinates);
+            return;
+        }
+
+        if (gridObstacle.GetType() == typeof(PlayerGridObstacle))
+        {
+            // Attack
+            Debug.Log($"{GameManager.Instance.currentlyPlayingPlayer.name} attacks {gridObstacle.name}.");
+
+            GameManager.Instance.NextPlayerTurn();
+
+            return;
+        }
     }
 }

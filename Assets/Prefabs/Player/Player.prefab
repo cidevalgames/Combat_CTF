@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5460806497924462647}
   - component: {fileID: 93576333805530973}
   - component: {fileID: 9118897398865584852}
+  - component: {fileID: 8876165338024313380}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -118,4 +119,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   movementRange: 1
-  _canMove: 0
+--- !u!114 &8876165338024313380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515472429516453224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb101c9e85e1e64e8b37cbc1d73868f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGridObstacle

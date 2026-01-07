@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -58,16 +57,13 @@ public class GridManager : MonoBehaviour
 
     public void EnableBoxInteraction(Vector2Int boxCoordinates)
     {
-        Debug.Log("Enable box interaction");
+        //Debug.Log("Enable box interaction");
 
         // Check if the box exists
         Rect validArea = new Rect(0, 0, gridWidth, gridHeight);
 
         if (!validArea.Contains(boxCoordinates))
-        {
-            Debug.Log("Not in valid area: " + boxCoordinates);
             return;
-        }
 
         GridBox box = GetBox(boxCoordinates);
         box.GetComponent<Button>().interactable = true;

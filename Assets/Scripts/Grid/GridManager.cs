@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +25,26 @@ public class GridManager : MonoBehaviour
     {
         if (!Instance)
             Instance = this;
+
+        StoreBoxes();
+    }
+
+    /// <summary>
+    /// Store boxes in the 2D array 'boxes'.
+    /// </summary>
+    private void StoreBoxes()
+    {
+        boxes = new GridBox[gridWidth, gridHeight];
+
+        foreach (GridBox b in grid.GetComponentsInChildren<GridBox>())
+        {
+            boxes[b.boxCoordinates.x, b.boxCoordinates.y] = b;
+        }
+    }
+
+    public Vector2Int GetGridSize()
+    {
+        return new Vector2Int(gridWidth, gridHeight);
     }
 
     [ContextMenu("Generate grid")]
@@ -36,8 +54,6 @@ public class GridManager : MonoBehaviour
 
         Transform gridTransform = grid.transform;
 
-        boxes = new GridBox[gridWidth, gridHeight];
-
         for (int y = 0; y < gridHeight; y++)
         {
             for (int x = 0; x < gridWidth; x++)
@@ -45,7 +61,7 @@ public class GridManager : MonoBehaviour
                 GameObject boxInstance = PrefabUtility.InstantiatePrefab(gridBoxPrefab, gridTransform) as GameObject;
                 GridBox box = boxInstance.GetComponent<GridBox>();
 
-                boxes[x, y] = box;
+                StoreBoxes();
 
                 Vector2Int coordinates = new Vector2Int(x, y);
                 box.boxCoordinates = coordinates;
@@ -80,6 +96,9 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adapt grid layout properties of grid to set cell size.
+    /// </summary>
     private void AdaptGridLayoutProperties()
     {
         float cellHeight = grid.GetComponent<RectTransform>().rect.height / gridHeight;

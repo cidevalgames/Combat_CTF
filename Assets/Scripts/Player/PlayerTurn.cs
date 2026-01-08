@@ -1,29 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerTurn : MonoBehaviour
 {
-    [Header("UI")]
-    [SerializeField] private Button nextButton;
-
     public bool isPlayerTurn { get; private set; } = false;
-
-    private bool _initalized = false;
-
-    private void Awake()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        if (_initalized)
-            return;
-
-        nextButton.onClick.AddListener(OnClickNextButton);
-
-        _initalized = true;
-    }
 
     public void SetPlayerTurn(bool isPlayerTurn)
     {
@@ -35,7 +14,13 @@ public class PlayerTurn : MonoBehaviour
 
             // Enable attack if attacker
             GetComponent<PlayerAttack>()?.EnableAttack();
-        }
+
+            // Enable next button
+            if (GameManager.Instance.IsAttackerTurn())
+                HUDManager.Instance.EnableButtonAttackerNext();
+            else if (GameManager.Instance.IsDefenderTurn())
+                HUDManager.Instance.EnableButtonDefenderNext();
+}
         else
         {
             // Disable movement
@@ -45,11 +30,4 @@ public class PlayerTurn : MonoBehaviour
             GetComponent<PlayerAttack>()?.DisableAttack();
         }
     }
-
-    #region UI
-    private void OnClickNextButton()
-    {
-        GameManager.Instance.NextPlayerTurn();
-    }
-    #endregion
 }

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8876165338024313380}
   - component: {fileID: 3588427059740368762}
   - component: {fileID: -8480606834269686214}
+  - component: {fileID: 6710934761759235931}
+  - component: {fileID: 8131886763805108571}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -159,3 +161,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0a6425b489d544a80b0f7ba506f5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAction
+--- !u!114 &6710934761759235931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515472429516453224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9aa486724f8214985eb56a82b7e852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPosition
+--- !u!114 &8131886763805108571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515472429516453224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf1e0193d036514f8daf421e2735826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTurn

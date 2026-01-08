@@ -58,46 +58,28 @@ public class GameManager : MonoBehaviour
 
         Vector2Int gridSize = gridManager.GetGridSize();
 
-        _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
-        _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(gridSize.x - 1, gridSize.y - 1));
+        //_attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
+        //_defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(gridSize.x - 1, gridSize.y - 1));
 
         // Test for attack
-        //_attacker.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(3, 5));
-        //_defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
+        _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(3, 5));
+        _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
 
         _defender.GetComponent<PlayerLife>().HealToMax();
 
-        EnablePlayer(_attacker);
+        _attacker.GetComponent<PlayerTurn>().SetPlayerTurn(true);
     }
 
     public void NextPlayerTurn()
     {
-        DisablePlayer(currentlyPlayingPlayer);
+        currentlyPlayingPlayer.GetComponent<PlayerTurn>().SetPlayerTurn(false);
 
         if (currentlyPlayingPlayer == _attacker)
             currentlyPlayingPlayer = _defender;
         else if (currentlyPlayingPlayer == _defender)
             currentlyPlayingPlayer = _attacker;
 
-        EnablePlayer(currentlyPlayingPlayer);
-    }
-
-    private void EnablePlayer(GameObject player)
-    {
-        // Enable movement
-        player.GetComponent<PlayerMovement>().EnableMovement();
-        
-        if (currentlyPlayingPlayer == _attacker)
-        {
-            // Enable attack
-            player.GetComponent<PlayerAttack>().EnableAttack();
-        }
-    }
-
-    private void DisablePlayer(GameObject player)
-    {
-        // Disable movement
-        player.GetComponent<PlayerMovement>().DisableMovement();
+        currentlyPlayingPlayer.GetComponent<PlayerTurn>().SetPlayerTurn(true);
     }
 
     /// <summary>

@@ -19,33 +19,36 @@ public class PlayerMovement : MonoBehaviour
         Vector2Int playerPos = _playerPosition.position;
         Vector2Int direction = Vector2Int.zero;
 
-        for (int j = 0; j < 4; j++)
+        for (int i = 1; i <= movementRange; i++)
         {
-            switch (j)
+            for (int j = 0; j < 4; j++)
             {
-                case 0:
-                    direction = Vector2Int.left;
-                    break;
-                case 1:
-                    direction = Vector2Int.right;
-                    break;
-                case 2:
-                    direction = Vector2Int.up;
-                    break;
-                case 3:
-                    direction = Vector2Int.down;
-                    break;
-            }
+                switch (j)
+                {
+                    case 0:
+                        direction = Vector2Int.left * i;
+                        break;
+                    case 1:
+                        direction = Vector2Int.right * i;
+                        break;
+                    case 2:
+                        direction = Vector2Int.up * i;
+                        break;
+                    case 3:
+                        direction = Vector2Int.down * i;
+                        break;
+                }
 
-            GridBox currentGridBox = GridManager.Instance.GetBox(playerPos + direction);
+                GridBox currentGridBox = GridManager.Instance.GetBox(playerPos + direction);
 
-            if (!currentGridBox)
-                continue;
+                if (!currentGridBox)
+                    continue;
 
-            // If there is no grid obstacle
-            if (!currentGridBox.gridObstacle)
-            {
-                GridManager.Instance.EnableBoxInteraction(playerPos + direction);
+                // If there is no grid obstacle
+                if (!currentGridBox.gridObstacle)
+                {
+                    GridManager.Instance.EnableBoxInteraction(playerPos + direction);
+                }
             }
         }
 

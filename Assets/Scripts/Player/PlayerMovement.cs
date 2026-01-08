@@ -26,20 +26,20 @@ public class PlayerMovement : MonoBehaviour
                 switch (j)
                 {
                     case 0:
-                        direction = Vector2Int.left * i;
+                        direction = Vector2Int.left;
                         break;
                     case 1:
-                        direction = Vector2Int.right * i;
+                        direction = Vector2Int.right;
                         break;
                     case 2:
-                        direction = Vector2Int.up * i;
+                        direction = Vector2Int.up;
                         break;
                     case 3:
-                        direction = Vector2Int.down * i;
+                        direction = Vector2Int.down;
                         break;
                 }
 
-                GridBox currentGridBox = GridManager.Instance.GetBox(playerPos + direction);
+                GridBox currentGridBox = GridManager.Instance.GetBox(playerPos + direction * i);
 
                 if (!currentGridBox)
                     continue;
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
                 // If there is no grid obstacle
                 if (!currentGridBox.gridObstacle)
                 {
-                    GridManager.Instance.EnableBoxInteraction(playerPos + direction);
+                    GridManager.Instance.EnableBoxInteraction(playerPos + direction * i);
                 }
             }
         }

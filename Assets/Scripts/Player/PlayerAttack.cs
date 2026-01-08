@@ -53,7 +53,7 @@ public class PlayerAttack : MonoBehaviour
                         break;
                 }
 
-                GridBox currentGridBox = GridManager.Instance.GetBox(playerPos + direction);
+                GridBox currentGridBox = GridManager.Instance.GetBox(playerPos + direction * i);
 
                 if (!currentGridBox)
                     continue;
@@ -63,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
 
                 if (currentGridBox.gridObstacle.GetGridObstacleType() == GridObstacle.GridObstacleType.Player)
                 {
-                    GridManager.Instance.EnableBoxInteraction(playerPos + direction);
+                    GridManager.Instance.EnableBoxInteraction(playerPos + direction * i);
                 }
             }
         }

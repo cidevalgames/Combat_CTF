@@ -7,7 +7,7 @@ public class PlayerSpawn : MonoBehaviour
         GridBox box = GridManager.Instance.boxes[spawnPosition.x, spawnPosition.y];
         transform.position = box.transform.position;
 
-        GetComponent<PlayerMovement>().SetPlayerPosition(spawnPosition);
+        GetComponent<PlayerPosition>().SetPlayerPosition(spawnPosition);
 
         box.gridObstacle = GetComponent<GridObstacle>();
 

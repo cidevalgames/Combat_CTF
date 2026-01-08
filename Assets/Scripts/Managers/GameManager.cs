@@ -58,12 +58,12 @@ public class GameManager : MonoBehaviour
 
         Vector2Int gridSize = gridManager.GetGridSize();
 
-        //_attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
-        //_defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(gridSize.x - 1, gridSize.y - 1));
+        _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
+        _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(gridSize.x - 1, gridSize.y - 1));
 
         // Test for attack
-        _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(4, 5));
-        _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
+        //_attacker.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(3, 5));
+        //_defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
 
         _defender.GetComponent<PlayerLife>().HealToMax();
 
@@ -86,6 +86,12 @@ public class GameManager : MonoBehaviour
     {
         // Enable movement
         player.GetComponent<PlayerMovement>().EnableMovement();
+        
+        if (currentlyPlayingPlayer == _attacker)
+        {
+            // Enable attack
+            player.GetComponent<PlayerAttack>().EnableAttack();
+        }
     }
 
     private void DisablePlayer(GameObject player)

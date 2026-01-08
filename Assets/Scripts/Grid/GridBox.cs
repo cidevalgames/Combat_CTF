@@ -25,26 +25,10 @@ public class GridBox : MonoBehaviour
 
     private void OnClick()
     {
-        if (!gridObstacle)
-        {
-            PlayerMovement playerMovement = GameManager.Instance.currentlyPlayingPlayer.GetComponent<PlayerMovement>();
-            playerMovement.MovePlayer(boxCoordinates);
+        GameObject currentlyPlayingPlayer = GameManager.Instance.currentlyPlayingPlayer;
+        PlayerAction playerAction = currentlyPlayingPlayer.GetComponent<PlayerAction>();
 
-            return;
-        }
-
-        if (gridObstacle.GetType() == typeof(PlayerGridObstacle))
-        {
-            if (GameManager.Instance.IsAttackerTurn())
-            {
-                // Attack target
-                GameManager.Instance.GetAttacker().GetComponent<PlayerAttack>().AttackTarget(GameManager.Instance.GetDefender());
-                Debug.Log($"{GameManager.Instance.currentlyPlayingPlayer.name} attacks {gridObstacle.name}.");
-
-                GameManager.Instance.NextPlayerTurn();
-            }
-
-            return;
-        }
+        // Do player action
+        playerAction.DoAction(gridObstacle, boxCoordinates);
     }
 }

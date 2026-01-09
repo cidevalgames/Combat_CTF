@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,17 +16,15 @@ public class GameManager : MonoBehaviour
         if (!Instance)
             Instance = this;
 
-        // Only for debug
-        for (int i = 0; i < SceneManager.sceneCount; i++)
-        {
-            //Debug.Log($"Current scene: {SceneManager.GetSceneAt(i).name}");
-
-            if (SceneManager.GetSceneAt(i).name == "FeaturePlayer")
-                StartCoroutine(StartGame());
-        }   
+        SceneLoader.Instance.OnLoadingDoneEvent += Init;
     }
 
-    private IEnumerator StartGame()
+    private void Init()
+    {
+        StartCoroutine(StartGame());
+    }
+
+    public IEnumerator StartGame()
     {
         if (_players[0] == null || _players[1] == null)
             _players = GameObject.FindGameObjectsWithTag("Player");

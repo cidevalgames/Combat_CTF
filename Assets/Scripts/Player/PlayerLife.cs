@@ -43,6 +43,8 @@ public class PlayerLife : MonoBehaviour
         Debug.Log($"{name} died.");
 
         Destroy(gameObject);
+
+        SceneLoader.Instance.ReloadGame();
     }
 
     public void HealToMax()

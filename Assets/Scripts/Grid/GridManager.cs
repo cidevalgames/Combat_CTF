@@ -97,6 +97,7 @@ public class GridManager : MonoBehaviour
         return new Vector2Int(gridWidth, gridHeight);
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Generate grid")]
     private void GenerateGrid()
     {
@@ -117,7 +118,6 @@ public class GridManager : MonoBehaviour
                 box.boxCoordinates = coordinates;
                 box.name += $" ({coordinates.x};{coordinates.y})";
 
-#if UNITY_EDITOR
                 if (showBoxesCoordinates)
                 {
                     box.GetComponentInChildren<TextMeshProUGUI>().text = $"{coordinates.x};{coordinates.y}";
@@ -126,7 +126,7 @@ public class GridManager : MonoBehaviour
                 {
                     box.GetComponentInChildren<TextMeshProUGUI>().text = "";
                 }
-#endif
+
             }
         }
 
@@ -145,6 +145,7 @@ public class GridManager : MonoBehaviour
             DestroyImmediate(child.gameObject);
         }
     }
+#endif
 
     /// <summary>
     /// Adapt grid layout properties of grid to set cell size.

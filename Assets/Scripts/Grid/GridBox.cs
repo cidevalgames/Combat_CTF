@@ -5,6 +5,7 @@ public class GridBox : MonoBehaviour
 {
     public Vector2Int boxCoordinates = Vector2Int.zero;
     public GridObstacle gridObstacle = null;
+    public Collectible collectible = null;
 
     private Button _button;
 

@@ -15,8 +15,15 @@ public class GameManager : MonoBehaviour
     {
         if (!Instance)
             Instance = this;
+        else
+            return;
 
         SceneLoader.Instance.OnLoadingDoneEvent += Init;
+    }
+
+    private void OnDestroy()
+    {
+        SceneLoader.Instance.OnLoadingDoneEvent -= Init;
     }
 
     private void Init()
@@ -61,6 +68,9 @@ public class GameManager : MonoBehaviour
         // Test for attack
         _attacker.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(3, 5));
         _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
+
+        // Spawn collectibles
+        FindFirstObjectByType<Flag>().SpawnCollectible(new Vector2Int(2, 5));
 
         _defender.GetComponent<PlayerLife>().HealToMax();
 

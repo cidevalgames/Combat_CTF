@@ -73,6 +73,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = box.transform.position;
         box.gridObstacle = GetComponent<GridObstacle>();
 
+        if (box.collectible)
+            GetComponent<PlayerCollection>().Collect(box.collectible);
+
         _playerPosition.SetPlayerPosition(newPos);
 
         DisableMovement();

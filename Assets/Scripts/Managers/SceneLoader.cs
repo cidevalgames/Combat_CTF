@@ -17,12 +17,16 @@ public class SceneLoader : MonoBehaviour
     {
         if (!Instance)
             Instance = this;
+        else
+            return;
     }
 
     private void Start()
     {
 #if !UNITY_EDITOR
         LoadGame();    
+#else
+        ReloadGame();
 #endif
     }
 
@@ -52,7 +56,7 @@ public class SceneLoader : MonoBehaviour
 
             while (!asyncOp.isDone)
                 yield return null;
-        }    
+        }
 
         OnLoadingDoneEvent?.Invoke();
         OnLoadingDoneEvent = null;

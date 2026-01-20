@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -8480606834269686214}
   - component: {fileID: 6710934761759235931}
   - component: {fileID: 8131886763805108571}
+  - component: {fileID: 6659578205432867349}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -185,3 +186,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf1e0193d036514f8daf421e2735826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTurn
+--- !u!114 &6659578205432867349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515472429516453224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c6e8c3a2b6a504fa666f2c37cc73d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollection

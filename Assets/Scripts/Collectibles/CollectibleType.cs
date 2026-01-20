@@ -2,5 +2,6 @@ public enum CollectibleType
 {
     None,
     Flag,
-    Weapon
+    Weapon,
+    Ammunition
 }

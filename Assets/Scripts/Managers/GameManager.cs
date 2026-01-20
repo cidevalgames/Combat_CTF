@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
         FindFirstObjectByType<Flag>().SpawnCollectible(new Vector2Int(1, 4));
         // Spawn weapon
         FindFirstObjectByType<Weapon>().SpawnCollectible(new Vector2Int(2, 5));
+        // Spawn ammunition
+        FindFirstObjectByType<Ammunition>().SpawnCollectible(new Vector2Int(1, 5));
 
         _defender.GetComponent<PlayerLife>().HealToMax();
 

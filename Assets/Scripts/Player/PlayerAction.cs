@@ -21,6 +21,18 @@ public class PlayerAction : MonoBehaviour
             PlayerMovement playerMovement = currentlyPlayingPlayer.GetComponent<PlayerMovement>();
             playerMovement.MovePlayer(boxCoordinates);
 
+            PlayerCollection playerCollection = currentlyPlayingPlayer.GetComponent<PlayerCollection>();
+
+            if (playerCollection.ContainsCollectible<Flag>())
+            {
+                Flag flag = currentlyPlayingPlayer.GetComponent<PlayerCollection>().GetCollectible<Flag>() as Flag;
+
+                if (flag.GetWinBox() == GridManager.Instance.GetBox(boxCoordinates))
+                {
+                    GameManager.Instance.WinGame(gameObject);
+                }
+            }
+
             return;
         }
 

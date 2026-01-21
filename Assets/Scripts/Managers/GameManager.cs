@@ -33,9 +33,11 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator StartGame()
     {
+        // Store players if one of them is missing
         if (_players[0] == null || _players[1] == null)
             _players = GameObject.FindGameObjectsWithTag("Player");
 
+        // Define which player is attacker and which one is defender
         foreach (GameObject p in _players)
         {
             if (p.name == "Player Attacker")
@@ -55,9 +57,16 @@ public class GameManager : MonoBehaviour
 
         yield return null;
 
+        // Enable players sprites
         foreach (GameObject p in _players)
         {
             p.GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+        // Enable collectibles sprites
+        foreach (Collectible c in FindObjectsByType<Collectible>(FindObjectsSortMode.None))
+        {
+            c.GetComponent<SpriteRenderer>().enabled = true;
         }
 
         Vector2Int gridSize = gridManager.GetGridSize();
@@ -72,11 +81,16 @@ public class GameManager : MonoBehaviour
         // Spawn collectibles
 
         // Spawn flag
-        FindFirstObjectByType<Flag>().SpawnCollectible(new Vector2Int(1, 4));
+        Flag flag = FindFirstObjectByType<Flag>();
+        flag.SpawnCollectible(new Vector2Int(1, 4));
         // Spawn weapon
         FindFirstObjectByType<Weapon>().SpawnCollectible(new Vector2Int(2, 5));
         // Spawn ammunition
         FindFirstObjectByType<Ammunition>().SpawnCollectible(new Vector2Int(1, 5));
+
+        // Set flag win box
+        Vector2Int winBoxPosition = new Vector2Int(0, 5);
+        flag.SetWinBox(winBoxPosition);
 
         _defender.GetComponent<PlayerLife>().HealToMax();
 
@@ -93,6 +107,11 @@ public class GameManager : MonoBehaviour
             currentlyPlayingPlayer = _attacker;
 
         currentlyPlayingPlayer.GetComponent<PlayerTurn>().SetPlayerTurn(true);
+    }
+
+    public void WinGame(GameObject player)
+    {
+        Debug.Log($"{player.name} wins!");
     }
 
     /// <summary>

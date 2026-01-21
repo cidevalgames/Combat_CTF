@@ -55,7 +55,7 @@ public class PlayerAction : MonoBehaviour
         {
             if (gridObstacleType == GridObstacleType.Player)
             {
-                if (_attacker.GetComponent<PlayerCollection>().ContainsCollectible<Weapon>())
+                if (_attacker.GetComponent<PlayerCollection>().ContainsCollectible<Gun>())
                 {
                     if (!_playerShoot)
                         _playerShoot = _attacker.GetComponent<PlayerShoot>();

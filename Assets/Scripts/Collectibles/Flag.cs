@@ -3,14 +3,21 @@ using UnityEngine.UI;
 
 public class Flag : Collectible
 {
-    GridBox winBox = null;
+    [SerializeField] private Vector2Int winBoxPosition;
 
     [Header("Win box colors")]
     [SerializeField] private Color winBoxColor;
+    
+    private GridBox winBox = null;
 
     private void Awake()
     {
         type = CollectibleType.Flag;
+    }
+
+    private void OnEnable()
+    {
+        SetWinBox(winBoxPosition);
     }
 
     public override void OnCollect(PlayerCollection playerCollection)

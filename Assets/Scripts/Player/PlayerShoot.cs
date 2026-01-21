@@ -18,10 +18,10 @@ public class PlayerShoot : MonoBehaviour
 
     public void EnableShoot()
     {
-        if (!_playerCollection.ContainsCollectible<Weapon>())
+        if (!_playerCollection.ContainsCollectible<Gun>())
             return;
 
-        Weapon w = _playerCollection.GetCollectible<Weapon>() as Weapon;
+        Gun w = _playerCollection.GetCollectible<Gun>() as Gun;
 
         if (w.GetAmmunitionAmount() <= 0)
             return;
@@ -84,7 +84,7 @@ public class PlayerShoot : MonoBehaviour
             target.GetComponent<PlayerLife>().Damage(shootDamage);
         }
 
-        Weapon w = _playerCollection.GetCollectible<Weapon>() as Weapon;
+        Gun w = _playerCollection.GetCollectible<Gun>() as Gun;
         w.RemoveAmmunition(1);
 
         DisableShoot();

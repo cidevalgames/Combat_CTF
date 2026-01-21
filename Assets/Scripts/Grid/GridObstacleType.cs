@@ -4,4 +4,5 @@ public enum GridObstacleType
     Player,
     Trap,
     Wall,
+    Turret,
 }

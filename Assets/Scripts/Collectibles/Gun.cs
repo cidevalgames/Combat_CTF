@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Weapon : Collectible
+public class Gun : Collectible
 {
     [SerializeField, Range(0, 9)] private int ammunitionAmount = 0;
 

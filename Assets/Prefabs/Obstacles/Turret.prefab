@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3651263888105848074
+--- !u!1001 &4065341600814981535
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1556073932194074667, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
       propertyPath: gridObstacleType
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2605060235230859112, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,12 +54,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6182639143757448305, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
       propertyPath: m_Name
-      value: Trap
+      value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012987799888264552, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012987799888264552, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43931a6cf07b5f5438182fd0cc6e9381, type: 3}
+      objectReference: {fileID: 21300000, guid: dc30f87c63944244e8838c8d7af4ed29, type: 3}
     - target: {fileID: 8012987799888264552, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -70,23 +74,24 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6182639143757448305, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -2328204363018628945}
+      addedObject: {fileID: 1752532029293263299}
   m_SourcePrefab: {fileID: 100100000, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
---- !u!1 &7450854437256706427 stripped
+--- !u!1 &7901525065167496686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6182639143757448305, guid: 054f7ec5cbc53694db2c6acab11aaa97, type: 3}
-  m_PrefabInstance: {fileID: 3651263888105848074}
+  m_PrefabInstance: {fileID: 4065341600814981535}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-2328204363018628945
+--- !u!114 &1752532029293263299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450854437256706427}
+  m_GameObject: {fileID: 7901525065167496686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d570f2f3845a243a759305ecd2ef26, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f66440ece7a4634dae53335a1b1540b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Trap
-  damageAmount: 20
+  m_EditorClassIdentifier: Assembly-CSharp::Turret
+  damageAmount: 10
+  bulletPrefab: {fileID: 8178463207402788626, guid: 3a79473aee1ca644691f73b2b4f8a385, type: 3}

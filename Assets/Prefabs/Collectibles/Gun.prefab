@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7683967855852534925
+--- !u!1001 &7558517407466525113
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,14 +11,14 @@ PrefabInstance:
     - target: {fileID: 5275979875559536741, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0d0ea6e67ae42c246ae8143d07ba189a, type: 3}
+      objectReference: {fileID: 21300000, guid: d99a2306b36b5fd41911774a322c07e4, type: 3}
     - target: {fileID: 5275979875559536741, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5945850212842453750, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
       propertyPath: m_Name
-      value: Flag
+      value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 6027401719960073636, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66,25 +66,24 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5945850212842453750, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -5684810783903120856}
+      addedObject: {fileID: -5786431102878305269}
   m_SourcePrefab: {fileID: 100100000, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
---- !u!1 &4044539545100453499 stripped
+--- !u!1 &4208289277550897999 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5945850212842453750, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
-  m_PrefabInstance: {fileID: 7683967855852534925}
+  m_PrefabInstance: {fileID: 7558517407466525113}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-5684810783903120856
+--- !u!114 &-5786431102878305269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4044539545100453499}
+  m_GameObject: {fileID: 4208289277550897999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7ce91cb6bae9d4eb24dede1fb911ab, type: 3}
+  m_Script: {fileID: 11500000, guid: ac7fcfb6d218eb0459c77eb5b7748f0d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Flag
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
   collectableBy: 1
-  winBoxPosition: {x: 0, y: 5}
-  winBoxColor: {r: 1, g: 0, b: 0, a: 1}
+  ammunitionAmount: 0

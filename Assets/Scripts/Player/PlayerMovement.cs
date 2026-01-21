@@ -54,11 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
                 if (gridObstacle)
                 {
-                    Debug.Log($"Grid obstacle type: {gridObstacle.GetGridObstacleType()}");
-
                     if (gridObstacle.GetGridObstacleType() == GridObstacleType.Trap)
                     {
-                        Debug.Log($"Enable box {playerPos + direction * i} for trap");
                         GridManager.Instance.EnableBoxInteraction(playerPos + direction * i);
                     }
                 }

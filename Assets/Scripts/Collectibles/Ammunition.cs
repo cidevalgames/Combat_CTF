@@ -12,7 +12,7 @@ public class Ammunition : Collectible
     public override void OnCollect(PlayerCollection playerCollection)
     {
         // Add ammunition to weapon
-        Weapon w = playerCollection.GetCollectible<Weapon>() as Weapon;
+        Gun w = playerCollection.GetCollectible<Gun>() as Gun;
         w.AddAmmunition(ammunitionAmount);
 
         base.OnCollect(playerCollection);

@@ -63,18 +63,6 @@ public class GameManager : MonoBehaviour
             p.GetComponent<SpriteRenderer>().enabled = true;
         }
 
-        // Enable collectibles sprites
-        foreach (Collectible c in FindObjectsByType<Collectible>(FindObjectsSortMode.None))
-        {
-            c.GetComponent<SpriteRenderer>().enabled = true;
-        }
-
-        // Enable grid obstacles sprites
-        foreach (GridObstacle g in FindObjectsByType<GridObstacle>(FindObjectsSortMode.None))
-        {
-            g.GetComponent<SpriteRenderer>().enabled = true;
-        }
-
         Vector2Int gridSize = gridManager.GetGridSize();
 
         //_attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
@@ -85,23 +73,10 @@ public class GameManager : MonoBehaviour
         _defender.GetComponent<PlayerSpawn>().SpawnPlayer(new Vector2Int(5, 5));
 
         // Spawn collectibles
+        CollectiblesSpawner.Instance.SpawnCollectibles();
 
-        // Spawn flag
-        Flag flag = FindFirstObjectByType<Flag>();
-        flag.SpawnCollectible(new Vector2Int(1, 4));
-        // Spawn weapon
-        FindFirstObjectByType<Weapon>().SpawnCollectible(new Vector2Int(2, 5));
-        // Spawn ammunition
-        FindFirstObjectByType<Ammunition>().SpawnCollectible(new Vector2Int(1, 5));
-        
-        // Place wall
-        FindFirstObjectByType<Wall>().PlaceWall(new Vector2Int(1, 1));
-        // Place trap
-        FindFirstObjectByType<Trap>().PlaceTrap(new Vector2Int(3, 4));
-
-        // Set flag win box
-        Vector2Int winBoxPosition = new Vector2Int(0, 5);
-        flag.SetWinBox(winBoxPosition);
+        // Spawn obstacles
+        ObstaclesSpawner.Instance.SpawnObstacles();
 
         // Heal both players
         _attacker.GetComponent<PlayerLife>().HealToMax();
@@ -120,6 +95,16 @@ public class GameManager : MonoBehaviour
             currentlyPlayingPlayer = _attacker;
 
         currentlyPlayingPlayer.GetComponent<PlayerTurn>().SetPlayerTurn(true);
+
+        Turret[] turrets = ObstaclesSpawner.Instance.GetSpawnedObstacles<Turret>();
+
+        if (turrets != null && turrets.Length > 0)
+        {
+            foreach (Turret t in turrets)
+            {
+                StartCoroutine(t.Shoot());
+            }
+        }
     }
 
     public void WinGame(GameObject player)

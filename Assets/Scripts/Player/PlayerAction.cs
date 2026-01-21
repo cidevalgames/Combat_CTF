@@ -9,20 +9,29 @@ public class PlayerAction : MonoBehaviour
 
     public void DoAction(GridObstacle gridObstacle, Vector2Int boxCoordinates)
     {
-        GridObstacle.GridObstacleType gridObstacleType = GridObstacle.GridObstacleType.None;
+        GridObstacleType gridObstacleType = GridObstacleType.None;
 
         if (gridObstacle)
             gridObstacleType = gridObstacle.GetGridObstacleType();
 
-        if (gridObstacleType == GridObstacle.GridObstacleType.None)
+        if (gridObstacleType == GridObstacleType.None
+            || gridObstacleType == GridObstacleType.Trap)
         {
-            // Move player if there is no grid obstacle
+            // Move player if there is no grid obstacle or a trap
             GameObject currentlyPlayingPlayer = GameManager.Instance.currentlyPlayingPlayer;
             PlayerMovement playerMovement = currentlyPlayingPlayer.GetComponent<PlayerMovement>();
             playerMovement.MovePlayer(boxCoordinates);
 
+            // Damage player if there is a trap
+            if (gridObstacleType == GridObstacleType.Trap)
+            {
+                PlayerLife playerLife = currentlyPlayingPlayer.GetComponent<PlayerLife>();
+                gridObstacle.GetComponent<Trap>().DamagePlayer(playerLife);
+            }
+
             PlayerCollection playerCollection = currentlyPlayingPlayer.GetComponent<PlayerCollection>();
 
+            // Check if the defender brought back the flag in the winning box
             if (playerCollection.ContainsCollectible<Flag>())
             {
                 Flag flag = currentlyPlayingPlayer.GetComponent<PlayerCollection>().GetCollectible<Flag>() as Flag;
@@ -44,7 +53,7 @@ public class PlayerAction : MonoBehaviour
 
         if (GameManager.Instance.IsAttackerTurn())
         {
-            if (gridObstacleType == GridObstacle.GridObstacleType.Player)
+            if (gridObstacleType == GridObstacleType.Player)
             {
                 if (_attacker.GetComponent<PlayerCollection>().ContainsCollectible<Weapon>())
                 {

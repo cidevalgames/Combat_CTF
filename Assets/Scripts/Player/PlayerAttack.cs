@@ -61,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
                 if (!currentGridBox.gridObstacle)
                     continue;
 
-                if (currentGridBox.gridObstacle.GetGridObstacleType() == GridObstacle.GridObstacleType.Player)
+                if (currentGridBox.gridObstacle.GetGridObstacleType() == GridObstacleType.Player)
                 {
                     GridManager.Instance.EnableBoxInteraction(playerPos + direction * i);
                 }

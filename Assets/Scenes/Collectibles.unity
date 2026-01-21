@@ -171,10 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7174236872495799732, guid: 05052816a2e22544ebbe813029fc0600, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -188,10 +184,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5275979875559536741, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5945850212842453750, guid: 8f039e776f0666944a8aafef63a6af38, type: 3}
       propertyPath: m_Name
       value: Ammunition
@@ -252,10 +244,6 @@ PrefabInstance:
     - target: {fileID: 2679209556463021372, guid: ac904bd6a3bcb0c44b2305e73aca5eab, type: 3}
       propertyPath: m_Name
       value: Weapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 3426721873127282467, guid: ac904bd6a3bcb0c44b2305e73aca5eab, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6407747966773354976, guid: ac904bd6a3bcb0c44b2305e73aca5eab, type: 3}
       propertyPath: m_LocalPosition.x

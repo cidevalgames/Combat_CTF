@@ -93,13 +93,18 @@ public class GameManager : MonoBehaviour
         FindFirstObjectByType<Weapon>().SpawnCollectible(new Vector2Int(2, 5));
         // Spawn ammunition
         FindFirstObjectByType<Ammunition>().SpawnCollectible(new Vector2Int(1, 5));
-        // Spawn wall
+        
+        // Place wall
         FindFirstObjectByType<Wall>().PlaceWall(new Vector2Int(1, 1));
+        // Place trap
+        FindFirstObjectByType<Trap>().PlaceTrap(new Vector2Int(3, 4));
 
         // Set flag win box
         Vector2Int winBoxPosition = new Vector2Int(0, 5);
         flag.SetWinBox(winBoxPosition);
 
+        // Heal both players
+        _attacker.GetComponent<PlayerLife>().HealToMax();
         _defender.GetComponent<PlayerLife>().HealToMax();
 
         _attacker.GetComponent<PlayerTurn>().SetPlayerTurn(true);

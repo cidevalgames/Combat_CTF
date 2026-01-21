@@ -70,7 +70,7 @@ public class GridManager : MonoBehaviour
         // Don't enable box interaction if there is an obstacle other than a defender in the box
         if (box.gridObstacle)
         {
-            if (box.gridObstacle.GetType() != typeof(PlayerGridObstacle))
+            if (box.gridObstacle.GetGridObstacleType() == GridObstacleType.Wall)
                 return;
 
             if (GameManager.Instance.IsDefenderTurn())

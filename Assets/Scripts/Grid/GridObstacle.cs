@@ -1,19 +1,11 @@
 using UnityEngine;
 
-public abstract class GridObstacle : MonoBehaviour
+public class GridObstacle : MonoBehaviour
 {
-    protected GridObstacleType gridObstacleType = GridObstacleType.None;
+    [SerializeField] private GridObstacleType gridObstacleType = GridObstacleType.None;
 
     public GridObstacleType GetGridObstacleType()
     {
         return gridObstacleType;
-    }
-
-    public enum GridObstacleType
-    {
-        None,
-        Player,
-        Trap,
-        Wall,
     }
 }

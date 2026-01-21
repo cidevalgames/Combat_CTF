@@ -127,10 +127,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2404517531318514844, guid: 2ba5b525c16b97949869b458bcff86cb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404517531318514844, guid: 2ba5b525c16b97949869b458bcff86cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3483054372815876562, guid: 2ba5b525c16b97949869b458bcff86cb, type: 3}
       propertyPath: m_Name
       value: Player Defender
       objectReference: {fileID: 0}
+    - target: {fileID: 3616145235779342800, guid: 2ba5b525c16b97949869b458bcff86cb, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1388899928}
     - target: {fileID: 3999499522849410730, guid: 2ba5b525c16b97949869b458bcff86cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -351.4148
@@ -333,6 +345,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4749320990481659908, guid: 3f0ee410c9732c440bf46542c508643a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749320990481659908, guid: 3f0ee410c9732c440bf46542c508643a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5178167961297034204, guid: 3f0ee410c9732c440bf46542c508643a, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1388899928}
     - target: {fileID: 5827726967445192010, guid: 3f0ee410c9732c440bf46542c508643a, type: 3}
       propertyPath: m_Name
       value: Player Attacker

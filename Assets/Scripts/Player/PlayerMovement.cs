@@ -44,10 +44,23 @@ public class PlayerMovement : MonoBehaviour
                 if (!currentGridBox)
                     continue;
 
+                GridObstacle gridObstacle = currentGridBox.gridObstacle;
+
                 // If there is no grid obstacle
-                if (!currentGridBox.gridObstacle)
+                if (!gridObstacle)
                 {
                     GridManager.Instance.EnableBoxInteraction(playerPos + direction * i);
+                }
+
+                if (gridObstacle)
+                {
+                    Debug.Log($"Grid obstacle type: {gridObstacle.GetGridObstacleType()}");
+
+                    if (gridObstacle.GetGridObstacleType() == GridObstacleType.Trap)
+                    {
+                        Debug.Log($"Enable box {playerPos + direction * i} for trap");
+                        GridManager.Instance.EnableBoxInteraction(playerPos + direction * i);
+                    }
                 }
             }
         }

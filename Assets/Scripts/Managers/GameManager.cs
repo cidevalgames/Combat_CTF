@@ -69,6 +69,12 @@ public class GameManager : MonoBehaviour
             c.GetComponent<SpriteRenderer>().enabled = true;
         }
 
+        // Enable grid obstacles sprites
+        foreach (GridObstacle g in FindObjectsByType<GridObstacle>(FindObjectsSortMode.None))
+        {
+            g.GetComponent<SpriteRenderer>().enabled = true;
+        }
+
         Vector2Int gridSize = gridManager.GetGridSize();
 
         //_attacker.GetComponent<PlayerSpawn>().SpawnPlayer(Vector2Int.zero);
@@ -87,6 +93,8 @@ public class GameManager : MonoBehaviour
         FindFirstObjectByType<Weapon>().SpawnCollectible(new Vector2Int(2, 5));
         // Spawn ammunition
         FindFirstObjectByType<Ammunition>().SpawnCollectible(new Vector2Int(1, 5));
+        // Spawn wall
+        FindFirstObjectByType<Wall>().PlaceWall(new Vector2Int(1, 1));
 
         // Set flag win box
         Vector2Int winBoxPosition = new Vector2Int(0, 5);

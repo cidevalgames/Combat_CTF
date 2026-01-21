@@ -15,4 +15,16 @@ public class PlayerCollection : MonoBehaviour
 
         collection.Add(collectible);
     }
+
+    public bool ContainsCollectible<TCollectible>() where TCollectible : Collectible { return GetCollectible<TCollectible>() != null; }
+
+    public Collectible GetCollectible<TCollectible>() where TCollectible : Collectible
+    {
+        foreach (var collectible in collection)
+        {
+            if (collectible is TCollectible) return (TCollectible)collectible;
+        }
+
+        return null;
+    }
 }

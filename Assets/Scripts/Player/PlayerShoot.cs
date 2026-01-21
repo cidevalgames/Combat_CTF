@@ -1,35 +1,34 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerPosition))]
-public class PlayerAttack : MonoBehaviour
+public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private int attackDamage = 10;
-    [SerializeField, Min(0)] private int attackRange = 1;
+    [SerializeField, Min(1)] private int shootRange = 3;
+    [SerializeField, Min(5)] private int shootDamage = 20;
 
     private PlayerPosition _playerPosition;
+    private PlayerCollection _playerCollection;
 
-    private bool _canAttack = false;
+    private bool _canShoot = false;
 
     private void Awake()
     {
         _playerPosition = GetComponent<PlayerPosition>();
+        _playerCollection = GetComponent<PlayerCollection>();
     }
 
-    public void AttackTarget(GameObject target)
+    public void EnableShoot()
     {
-        if (target.GetComponent<PlayerLife>())
-        {
-            target.GetComponent<PlayerLife>().Damage(attackDamage);
-        }
+        if (!_playerCollection.ContainsCollectible<Weapon>())
+            return;
 
-        DisableAttack();
-    }
+        Weapon w = _playerCollection.GetCollectible<Weapon>() as Weapon;
 
-    public void EnableAttack()
-    {
+        if (w.GetAmmunitionAmount() <= 0)
+            return;
+
         Vector2Int playerPos = _playerPosition.position;
 
-        for (int i = 1; i <= attackRange; i++)
+        for (int i = 1; i <= shootRange; i++)
         {
             Vector2Int direction;
 
@@ -68,13 +67,26 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        _canAttack = true;
+        _canShoot = true;
     }
 
-    public void DisableAttack()
+    public void DisableShoot()
     {
         GridManager.Instance.DisableBoxesInteraction();
 
-        _canAttack = false;
+        _canShoot = false;
+    }
+
+    public void ShootTarget(GameObject target)
+    {
+        if (target.GetComponent<PlayerLife>())
+        {
+            target.GetComponent<PlayerLife>().Damage(shootDamage);
+        }
+
+        Weapon w = _playerCollection.GetCollectible<Weapon>() as Weapon;
+        w.RemoveAmmunition(1);
+
+        DisableShoot();
     }
 }

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
+    private GameObject _attacker;
+    private GameObject _defender;
+    private PlayerAttack _playerAttack;
+    private PlayerShoot _playerShoot;
+
     public void DoAction(GridObstacle gridObstacle, Vector2Int boxCoordinates)
     {
         GridObstacle.GridObstacleType gridObstacleType = GridObstacle.GridObstacleType.None;
@@ -19,16 +24,33 @@ public class PlayerAction : MonoBehaviour
             return;
         }
 
+        if (!_attacker)
+            _attacker = GameManager.Instance.GetAttacker();
+
+        if (!_defender)
+            _defender = GameManager.Instance.GetDefender();
+
         if (GameManager.Instance.IsAttackerTurn())
         {
             if (gridObstacleType == GridObstacle.GridObstacleType.Player)
             {
-                GameObject attacker = GameManager.Instance.GetAttacker();
-                PlayerAttack playerAttack = attacker.GetComponent<PlayerAttack>();
+                if (_attacker.GetComponent<PlayerCollection>().ContainsCollectible<Weapon>())
+                {
+                    if (!_playerShoot)
+                        _playerShoot = _attacker.GetComponent<PlayerShoot>();
 
-                // Attack target
-                playerAttack.AttackTarget(GameManager.Instance.GetDefender());
-                Debug.Log($"{GameManager.Instance.currentlyPlayingPlayer.name} attacks {gridObstacle.name}.");
+                    // Shoot target
+                    _playerShoot.ShootTarget(_defender);
+                }
+                else
+                {
+                    if (!_playerAttack)
+                        _playerAttack = _attacker.GetComponent<PlayerAttack>();
+
+                    // Attack target
+                    _playerAttack.AttackTarget(_defender);
+                    Debug.Log($"{_attacker} attacks {gridObstacle.name}.");
+                }
 
                 GameManager.Instance.NextPlayerTurn();
 

@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3515472429516453224, guid: ff8acffa93e106a409bfd1fe8c568351, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3536501170099487326}
+    - targetCorrespondingSourceObject: {fileID: 3515472429516453224, guid: ff8acffa93e106a409bfd1fe8c568351, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6615403769396051918}
   m_SourcePrefab: {fileID: 100100000, guid: ff8acffa93e106a409bfd1fe8c568351, type: 3}
 --- !u!1 &5827726967445192010 stripped
 GameObject:
@@ -77,5 +80,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255c938ff1faf14b9e19c3ae3bafde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  attackDamage: 20
-  attackRange: 3
+  attackDamage: 10
+  attackRange: 1
+--- !u!114 &6615403769396051918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5827726967445192010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00cd4e3a08d1314693fd0f816b9c3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
+  shootRange: 3

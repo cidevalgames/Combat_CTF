@@ -14,6 +14,8 @@ public class PlayerTurn : MonoBehaviour
 
             // Enable attack if attacker
             GetComponent<PlayerAttack>()?.EnableAttack();
+            // Enable shoot if attacker
+            GetComponent<PlayerShoot>()?.EnableShoot();
 
             // Enable next button
             if (GameManager.Instance.IsAttackerTurn())
